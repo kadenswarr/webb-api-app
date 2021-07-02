@@ -1,25 +1,51 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import FactCard from './FactCard';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class App extends React.Component {
+
+  constructor() {
+    super()
+    this.state = {
+      facts: ""
+    }
+  }
+
+  async getFact(factType="year") {
+    const resp = await fetch(`http://numbersapi.com/random/${factType}`);
+    const data = await resp.text();
+    this.setState({facts: data});
+  }
+
+  componentDidMount () {
+    this.getFact();
+  }
+
+  clickNewFact = (event, factType="trivia") => {
+    switch (event.target.textContent) {
+      case "Year Fact":
+        this.getFact("year");
+        break;
+      case "Trivia Fact":
+        this.getFact("trivia");
+        break;
+      case "Date Fact":
+        this.getFact("date");
+        break;
+      default:
+        this.getFact();
+    }
+  }
+
+  render() {
+    const { facts } = this.state;
+    return(
+      <div className="factCard">
+        <FactCard fact={ facts} newFact={ this.clickNewFact } />
+      </div>
+    )
+  }
 }
 
 export default App;

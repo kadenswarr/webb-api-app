@@ -1,0 +1,17 @@
+.Card{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: grey;
+  margin: 2px;
+}
+
+.buttons{
+  display: grid;
+  min-width: 100vh;
+  justify-content: flex-end;
+}
+
+.Card  p {
+  color: white;
+}
