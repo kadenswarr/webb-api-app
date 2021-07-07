@@ -1,15 +1,11 @@
 .Card{
   display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: grey;
+  background: rgba(0, 0, 0, 0) linear-gradient(to right, rgb(238, 52, 52), rgb(196, 84, 87)) repeat scroll 0% 0%;
   margin: 2px;
 }
 
 .buttons{
   display: grid;
-  min-width: 100vh;
-  justify-content: flex-end;
 }
 
 .Card  p {
