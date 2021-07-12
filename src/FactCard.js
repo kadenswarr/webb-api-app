@@ -11,6 +11,7 @@ const FactCard = ({ fact, newFact}) => {
         < FactButton newFact={ newFact } btnType= {"Year Fact"}/>
         < FactButton newFact={ newFact } btnType= {"Trivia Fact"}/>
         < FactButton newFact={ newFact } btnType= {"Date Fact"}/>
+        < FactButton newFact={ newFact } btnType= {"Previous Fact"}/>
       </div>
     </div>
   )
