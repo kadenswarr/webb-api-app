@@ -8,14 +8,17 @@ class App extends React.Component {
   constructor() {
     super()
     this.state = {
-      facts: ""
+      facts: "0 is the number of times you clicked on a new fact button.",
+      prevFact: ""
     }
   }
 
   async getFact(factType="year") {
-    const resp = await fetch(`http://numbersapi.com/random/${factType}`);
-    const data = await resp.text();
-    this.setState({facts: data});
+      const oldFact = this.state.facts;
+      const resp = await fetch(`http://numbersapi.com/random/${factType}`);
+      const data = await resp.text();
+      this.setState({facts: data, prevFact: oldFact});
+      console.log(oldFact);
   }
 
   componentDidMount () {
@@ -33,6 +36,9 @@ class App extends React.Component {
       case "Date Fact":
         this.getFact("date");
         break;
+      case "Previous Fact":
+        this.setState({facts: this.state.prevFact});
+        break;
       default:
         this.getFact();
     }
@@ -42,7 +48,7 @@ class App extends React.Component {
     const { facts } = this.state;
     return(
       <div className="factCard">
-        <FactCard fact={ facts} newFact={ this.clickNewFact } />
+        <FactCard fact={ facts } newFact={ this.clickNewFact } />
       </div>
     )
   }
